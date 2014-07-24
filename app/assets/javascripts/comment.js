@@ -1,6 +1,6 @@
 var Comment = {
   initialize: function(){
-    $('#new_comment').submit(this.submitComment.bind(this));
+    $('#new_comment').submit($.proxy(this.submitComment, this));
   },
 
   submitComment: function(event) {
@@ -24,7 +24,7 @@ var Comment = {
       dataType: 'json',
       data: { comment: { body: body_value } },
     })
-    .done(this.addComment.bind(this));
+    .done($.proxy(this.addComment, this));
   },
 
   addComment: function(comment) {
